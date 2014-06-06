@@ -15,12 +15,12 @@
 		
 		private var _meshClip:MeshClip;
 		
+		public var mc:MovieClip;
 				public function Index()		{			stage.align = StageAlign.TOP_LEFT;			stage.scaleMode = StageScaleMode.NO_SCALE;		
+		
 			
-			var orgBmpData = new libSampleImg();
-			
-			_texture = new BitmapData( orgBmpData.width, orgBmpData.height );
-			_texture.draw(orgBmpData);
+			_texture = new BitmapData( mc.width, mc.height );
+			_texture.draw(mc);
 			
 			//mySprite.x = 400;
 			mySprite.alpha=0.5;
@@ -51,7 +51,15 @@
 					indices.push(i, i+($w+1), i+1);
 				}
 			}
-				
+			
+			addEventListener(Event.ENTER_FRAME, draw);
+		}
+		
+		
+		private function draw(e:Event):void
+		{
+			_texture.draw(mc);
+			myGraphics.clear();
 			myGraphics.beginBitmapFill(_texture);
 			myGraphics.drawTriangles(vertices, indices, uvData);
 			myGraphics.endFill();
@@ -62,11 +70,6 @@
 		{
 			vertices[$id*2] = mySprite.mouseX+mySprite.x;
 			vertices[$id*2+1] = mySprite.mouseY;
-			
-			myGraphics.clear();
-			myGraphics.beginBitmapFill(_texture);
-			myGraphics.drawTriangles(vertices, indices, uvData);
-			myGraphics.endFill();
 		}
 					}}
 

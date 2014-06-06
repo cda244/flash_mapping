@@ -3,7 +3,7 @@
 		public class MeshClip extends MovieClip	{
 		
 		
-		private const W:uint = 9;
+		private const W:uint = 5;
 		private const H:uint = 9;
 		
 		private var _pt:Vector.<MeshPt> = new Vector.<MeshPt>();
